@@ -63,8 +63,7 @@ export default function LoginPage() {
     // 2. RESIDENT LOGIN
     try {
       // Dynamic API Base logic to prevent 404/Connection errors
-      const API_BASE = process.env.EXPO_PUBLIC_API_URL || 
-        (Platform.OS === 'web' ? 'http://localhost:5000' : 'http://10.0.2.2:5000');
+      const API_BASE = process.env.EXPO_PUBLIC_API_URL || 'https://tibungco.vercel.app';
       
       const response = await fetch(`${API_BASE}/api/login`, {
         method: 'POST',

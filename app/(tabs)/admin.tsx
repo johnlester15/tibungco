@@ -18,7 +18,7 @@
     } from '@expo-google-fonts/montserrat';
     import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 
-    const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'http://localhost:5000';
+    const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'https://tibungco.vercel.app';
 
     export default function EnhancedAdminDashboard() {
         const { width } = useWindowDimensions();

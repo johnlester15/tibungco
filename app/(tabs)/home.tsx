@@ -22,7 +22,7 @@ import {
 } from 'react-native';
 
 // API URL
-const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'http://localhost:5000';
+const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'https://tibungco.vercel.app';
 
 // Font Loading
 import {

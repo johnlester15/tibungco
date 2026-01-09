@@ -4,7 +4,7 @@ import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import AppButton from '../../components/AppButton';
 
 // API URL (override with EXPO_PUBLIC_API_URL in production/dev)
-const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'http://localhost:5000';
+const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'https://tibungco.vercel.app';
 
 export default function AddAnnouncement() {
   const [title, setTitle] = useState('');
