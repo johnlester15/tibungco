@@ -11,7 +11,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "server": "node server.js"
+    "server": "node server.js",
+    "build": "npx expo export -p web"
   },
   "dependencies": {
     "@expo-google-fonts/montserrat": "^0.4.2",
