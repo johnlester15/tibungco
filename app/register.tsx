@@ -7,15 +7,15 @@ import {
   Image,
   ImageBackground,
   KeyboardAvoidingView,
-  Platform, 
+  Platform,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput, 
+  TextInput,
   TouchableOpacity,
   useWindowDimensions,
-  View,
-  SafeAreaView
+  View
 } from 'react-native';
 
 // --- PROJECT CONSTANTS & COMPONENTS ---

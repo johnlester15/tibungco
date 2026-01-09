@@ -1,22 +1,24 @@
-    import React, { useCallback, useEffect, useState } from 'react';
-    import {
-        ActivityIndicator, Alert, Image, KeyboardAvoidingView,
-        Modal, Platform, RefreshControl, SafeAreaView,
-        ScrollView, StyleSheet, Text, TextInput,
-        TouchableOpacity, useWindowDimensions, View, FlatList
-    } from 'react-native';
-    import { Stack, useRouter } from 'expo-router';
     import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-    import { LinearGradient } from 'expo-linear-gradient';
-    import { BlurView } from 'expo-blur';
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Stack, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+    ActivityIndicator, Alert,
+    FlatList,
+    Image, KeyboardAvoidingView,
+    Modal, Platform, RefreshControl, SafeAreaView,
+    ScrollView, StyleSheet, Text, TextInput,
+    TouchableOpacity, useWindowDimensions, View
+} from 'react-native';
 
     // Custom Fonts
-    import { 
-        useFonts, 
-        Montserrat_400Regular, Montserrat_500Medium, 
-        Montserrat_600SemiBold, Montserrat_700Bold 
-    } from '@expo-google-fonts/montserrat';
-    import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
+    import {
+    Montserrat_400Regular, Montserrat_500Medium,
+    Montserrat_600SemiBold, Montserrat_700Bold,
+    useFonts
+} from '@expo-google-fonts/montserrat';
+import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 
     const PRODUCTION_FALLBACK = 'https://tibungcoh.vercel.app';
     const DEFAULT_LOCAL = 'http://localhost:5000';

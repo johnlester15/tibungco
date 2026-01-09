@@ -8,6 +8,7 @@ import {
   Alert,
   Image,
   ImageBackground,
+  KeyboardAvoidingView,
   Modal,
   Platform,
   SafeAreaView,
@@ -17,8 +18,7 @@ import {
   TextInput,
   TouchableOpacity,
   useWindowDimensions,
-  View,
-  KeyboardAvoidingView
+  View
 } from 'react-native';
 
 // API URL resolution: prefer explicit env override, otherwise use web origin

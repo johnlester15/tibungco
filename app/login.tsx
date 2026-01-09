@@ -62,9 +62,7 @@ export default function LoginPage() {
 
     // 2. RESIDENT LOGIN
     try {
-      // Dynamic API base: prefer explicit env override, otherwise use
-      // the current web origin (when running in browser) or localhost for dev.
-      // For mobile emulators/devices set `EXPO_PUBLIC_API_URL` to your machine IP.
+     
       const PRODUCTION_FALLBACK = 'https://tibungcoh.vercel.app';
       const DEFAULT_LOCAL = 'http://localhost:5000';
       let API_BASE = process.env.EXPO_PUBLIC_API_URL;
