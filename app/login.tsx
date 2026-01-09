@@ -62,8 +62,26 @@ export default function LoginPage() {
 
     // 2. RESIDENT LOGIN
     try {
-      // Dynamic API Base logic to prevent 404/Connection errors
-      const API_BASE = process.env.EXPO_PUBLIC_API_URL || 'https://tibungco.vercel.app';
+      // Dynamic API base: prefer explicit env override, otherwise use
+      // the current web origin (when running in browser) or localhost for dev.
+      // For mobile emulators/devices set `EXPO_PUBLIC_API_URL` to your machine IP.
+      const PRODUCTION_FALLBACK = 'https://tibungcoh.vercel.app';
+      const DEFAULT_LOCAL = 'http://localhost:5000';
+      let API_BASE = process.env.EXPO_PUBLIC_API_URL;
+      if (!API_BASE) {
+        const origin = (typeof globalThis !== 'undefined' && (globalThis as any).location?.origin) || '';
+        // If running on a local dev server (expo web / localhost), prefer the local backend
+        const isLocalWeb = origin.includes('localhost') || origin.includes('127.0.0.1') || origin.includes('19006');
+        if (origin && isLocalWeb) {
+          API_BASE = DEFAULT_LOCAL;
+        } else if (origin) {
+          API_BASE = origin; // production where frontend and backend share origin
+        } else {
+          API_BASE = PRODUCTION_FALLBACK; // fallback to deployed backend
+        }
+      }
+      // Helpful debug: show which API host the client will call
+      console.log('Using API_BASE ->', API_BASE);
       
       const response = await fetch(`${API_BASE}/api/login`, {
         method: 'POST',

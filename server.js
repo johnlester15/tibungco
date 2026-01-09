@@ -28,21 +28,8 @@ pool.connect((err) => {
 
 // --- 1. GENERAL & STATS ROUTES ---
 
-// Root route: show a plain HTML message only in development.
-// In production (e.g. Vercel) we avoid returning HTML so the frontend app can be served at the same domain.
-if (process.env.NODE_ENV === 'development') {
-  app.get('/', (req, res) => {
-    res.send('<h1>Barangay Tibungco Server is Running!</h1>');
-  });
-} else {
-  app.get('/', (req, res) => {
-    res.status(404).json({ error: 'Not Found' });
-  });
-}
-
-// Health check endpoint for deployments and uptime monitoring
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+app.get('/', (req, res) => {
+  res.send('<h1>Barangay Tibungco Server is Running!</h1>');
 });
 
 app.get('/api/stats', async (req, res) => {
