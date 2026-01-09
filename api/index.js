@@ -14,8 +14,10 @@ const pool = new Pool({
 });
 
 // --- 1. GENERAL & STATS ROUTES ---
-app.get('/', (req, res) => {
-  res.send('<h1>Barangay Tibungco Server is Running on Vercel!</h1>');
+// Do not serve HTML at root from API routes — let the frontend handle `/`.
+// Provide a lightweight health endpoint for monitoring.
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
 });
 
 app.get('/api/stats', async (req, res) => {
