@@ -60,12 +60,23 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      // Replace localhost with your Vercel URL
-const response = await fetch('https://tibungco.vercel.app/api/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fullName, email, phone, password }),
-});
+      const PRODUCTION_FALLBACK = 'https://tibungcoh.vercel.app';
+      const DEFAULT_LOCAL = 'http://localhost:5000';
+      let API_BASE = process.env?.EXPO_PUBLIC_API_URL;
+      if (!API_BASE) {
+        const origin = (typeof globalThis !== 'undefined' && (globalThis as any).location?.origin) || '';
+        const isLocalWeb = origin.includes('localhost') || origin.includes('127.0.0.1') || origin.includes('19006');
+        if (origin && isLocalWeb) API_BASE = DEFAULT_LOCAL;
+        else if (origin) API_BASE = origin;
+        else API_BASE = PRODUCTION_FALLBACK;
+      }
+      console.log('Using API_BASE ->', API_BASE);
+
+      const response = await fetch(`${API_BASE}/api/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, email, phone, password }),
+      });
 
       const data = await response.json();
 
@@ -76,6 +87,7 @@ const response = await fetch('https://tibungco.vercel.app/api/register', {
         setErrorMessage(data?.error || "Registration failed");
       }
     } catch (err) {
+      console.error('Register error:', err);
       setErrorMessage("Connection Error: Is the server running?");
     } finally {
       setLoading(false);

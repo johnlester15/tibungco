@@ -21,8 +21,19 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 
-// API URL
-const API_URL = (process.env?.EXPO_PUBLIC_API_URL) || 'https://tibungco.vercel.app';
+// API URL resolution: prefer explicit env override, otherwise use web origin
+// (and prefer localhost during local web dev), else fallback to deployed domain.
+const PRODUCTION_FALLBACK = 'https://tibungcoh.vercel.app';
+const DEFAULT_LOCAL = 'http://localhost:5000';
+let API_URL = process.env?.EXPO_PUBLIC_API_URL;
+if (!API_URL) {
+  const origin = (typeof globalThis !== 'undefined' && (globalThis as any).location?.origin) || '';
+  const isLocalWeb = origin.includes('localhost') || origin.includes('127.0.0.1') || origin.includes('19006');
+  if (origin && isLocalWeb) API_URL = DEFAULT_LOCAL;
+  else if (origin) API_URL = origin;
+  else API_URL = PRODUCTION_FALLBACK;
+}
+console.log('Using API_URL ->', API_URL);
 
 // Font Loading
 import {
